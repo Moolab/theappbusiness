@@ -7,5 +7,6 @@
     <color name="bg_card">#FFFFFF</color>
     <color name="stroke_card">#CACCCCCC</color>
     <color name="stroke_card_bottom">#60FFFFFF</color>
+    <color name="divider">#edeeee</color>
 
 </resources>

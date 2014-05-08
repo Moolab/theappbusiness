@@ -6,15 +6,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.AbsListView;
 import android.widget.GridView;
 
-import com.theappbusiness.whoswho.BuildConfig;
 import com.theappbusiness.whoswho.R;
 import com.theappbusiness.whoswho.WhosWhoContract;
 import com.theappbusiness.whoswho.adapters.EmployeesAdapter;
@@ -23,18 +20,14 @@ import com.theappbusiness.whoswho.utils.ImageFetcher;
 
 public class MainFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 	
-	private static final String TAG = "ImageGridFragment";
 	private static final String IMAGE_CACHE_DIR = "thumbs";
-
-	private int mCardWidth;
-	private int mImageThumbSpacing;	
+	
 	private ImageFetcher mImageFetcher;
 	private ImageCacheParams cacheParams;
 	
 	private GridView mEmployeesGrid;
 	private EmployeesAdapter mAdapter;
-	private int mCardHeight;
-
+	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         
@@ -56,24 +49,6 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
 			}
 		});
         
-        mEmployeesGrid.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-			@Override
-			public void onGlobalLayout() {
-				if (mAdapter.getNumColumns() == 0) {
-					final int numColumns = (int) Math.floor(mEmployeesGrid.getWidth() / (mCardWidth + mImageThumbSpacing));
-					if (numColumns > 0) {
-						final int columnWidth = (mEmployeesGrid.getWidth() / numColumns) - mImageThumbSpacing;						
-						mImageFetcher.setImageSize(columnWidth);						
-						mAdapter.setNumColumns(numColumns);
-						mAdapter.setItemHeight(mCardHeight);
-						if (BuildConfig.DEBUG) {
-							Log.d(TAG, "onCreateView - numColumns set to " + numColumns);
-						}
-					}
-				}
-			}
-		});
-        
 		return inflate;
     }
 
@@ -82,14 +57,10 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
 		super.onActivityCreated(savedInstanceState);
 		setHasOptionsMenu(true);
 
-		mCardWidth = getResources().getDimensionPixelSize(R.dimen.employess_card_width);
-		mCardHeight = getResources().getDimensionPixelSize(R.dimen.employee_card_height);
-		mImageThumbSpacing = getResources().getDimensionPixelSize(R.dimen.employee_spacing);		
-
 		cacheParams = new ImageCacheParams(getActivity(), IMAGE_CACHE_DIR);
 		cacheParams.setMemCacheSizePercent(0.8f);
 
-		mImageFetcher = new ImageFetcher(getActivity(), mCardWidth);
+		mImageFetcher = new ImageFetcher(getActivity(), getResources().getDimensionPixelSize(R.dimen.photo_size));
 		mImageFetcher.setLoadingImage(null);
 		mImageFetcher.addImageCache(getActivity().getSupportFragmentManager(), cacheParams);
 

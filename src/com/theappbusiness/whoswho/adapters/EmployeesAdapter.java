@@ -7,8 +7,6 @@ import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,13 +21,6 @@ public class EmployeesAdapter extends CursorAdapter {
 	 * Context
 	 */
 	private final Context mContext;
-	
-	/*
-	 * Grid Item Height
-	 */
-	private int mItemHeight = 0;
-	private int mNumColumns = 0;
-	private GridView.LayoutParams mCardLayoutParams;
 
 	private LayoutInflater inflater;
 	private ImageFetcher mImageFetcher;
@@ -38,7 +29,6 @@ public class EmployeesAdapter extends CursorAdapter {
 		super(context, null, true);
 		mContext = context;
 		this.mImageFetcher = mImageFetcher;
-		mCardLayoutParams = new GridView.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 		inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 
@@ -78,7 +68,6 @@ public class EmployeesAdapter extends CursorAdapter {
 		ViewHolder viewHolder;
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.employee, container, false);
-			convertView.setLayoutParams(mCardLayoutParams);
 
 			viewHolder = new ViewHolder();
 			viewHolder.photo = (ImageView) convertView.findViewById(R.id.photo);
@@ -97,11 +86,6 @@ public class EmployeesAdapter extends CursorAdapter {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
 
-		// Check the height matches our calculated column width
-		if (convertView.getLayoutParams().height != mItemHeight) {
-			convertView.setLayoutParams(mCardLayoutParams);
-		}
-
 		Cursor item = getItem(position);
 
 		String photo = item.getString(item.getColumnIndex(WhosWhoContract.Biographies.COLUMN_NAME_PHOTO));
@@ -117,29 +101,6 @@ public class EmployeesAdapter extends CursorAdapter {
 		viewHolder.bio.setText(item.getString(item.getColumnIndex(WhosWhoContract.Biographies.COLUMN_NAME_BIO)));
 
 		return convertView;
-	}
-
-	/**
-	 * Sets the item height. Useful for when we know the column width so the
-	 * height can be set to match.
-	 * 
-	 * @param height
-	 */
-	public void setItemHeight(int height) {
-		if (height == mItemHeight) {
-			return;
-		}
-		mItemHeight = height;
-		mCardLayoutParams = new GridView.LayoutParams(LayoutParams.MATCH_PARENT, mItemHeight);
-		notifyDataSetChanged();
-	}
-
-	public void setNumColumns(int numColumns) {
-		mNumColumns = numColumns;
-	}
-
-	public int getNumColumns() {
-		return mNumColumns;
 	}
 
 	@Override

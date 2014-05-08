@@ -3,6 +3,7 @@ package com.theappbusiness.whoswho.asyncs;
 import android.content.ContentValues;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.theappbusiness.whoswho.WhosWhoContract;
 
@@ -28,8 +29,11 @@ public class AsyncSyncEmployees extends AsyncTask<ContentValues, Void, Boolean> 
 			return false;
 		}
 		
-//		mContext.getContentResolver().delete(WhosWhoContract.Biographies.CONTENT_URI, null, null);
+		mContext.getContentResolver().delete(WhosWhoContract.Biographies.CONTENT_URI, null, null);
 		for (ContentValues employee : employees) {
+			if (employee.getAsString(WhosWhoContract.Biographies.COLUMN_NAME_NAME) == "Swav Kulinski") {
+				Log.i("TESTE", "teste");
+			}
 			mContext.getContentResolver().insert(WhosWhoContract.Biographies.CONTENT_URI, employee);
 		}
 		

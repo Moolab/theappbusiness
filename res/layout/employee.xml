@@ -3,9 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/employee_card_height"
     android:background="@drawable/bg_card"
-    android:divider="@android:drawable/divider_horizontal_dark"
-    android:orientation="vertical"
-    android:showDividers="middle" >
+    android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,16 +21,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:orientation="vertical" >
 
             <TextView
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:gravity="bottom"
                 android:layout_weight="1"
+                android:gravity="bottom"
                 android:textColor="@color/text_name"
                 android:textSize="@dimen/text_xxlarge" />
 
@@ -41,16 +39,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:gravity="top"                
+                android:gravity="top"
                 android:textColor="@color/text_title"
                 android:textSize="@dimen/text_large" />
         </LinearLayout>
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="@color/divider" />
+
     <TextView
         android:id="@+id/user_description"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
         android:padding="@dimen/padding_intern"
         android:textColor="@color/text_bio"
         android:textSize="@dimen/text_medium" />

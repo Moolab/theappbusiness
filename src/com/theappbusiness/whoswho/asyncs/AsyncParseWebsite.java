@@ -12,7 +12,7 @@ import org.apache.http.util.EntityUtils;
 import android.content.ContentValues;
 import android.os.AsyncTask;
 
-import com.theappbusiness.whoswho.provider.AccessBioProvider;
+import com.theappbusiness.whoswho.helper.ParseWebsiteHelper;
 
 public class AsyncParseWebsite extends AsyncTask<String, Void, ArrayList<ContentValues>> {
 
@@ -47,7 +47,7 @@ public class AsyncParseWebsite extends AsyncTask<String, Void, ArrayList<Content
         } 		
 		
 		
-		AccessBioProvider bio = new AccessBioProvider();
+		ParseWebsiteHelper bio = new ParseWebsiteHelper();
 		bio.setHtml(html);
 		ArrayList<ContentValues> values =  bio.parseBio();
 		return values;

@@ -5,7 +5,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="padding_intern">8dp</dimen>
     <dimen name="photo_size">100dp</dimen>
-    <dimen name="employee_card_height">240dp</dimen>
+    <dimen name="employee_card_height">290dp</dimen>
     <dimen name="employee_spacing">8dp</dimen>
     <dimen name="employess_card_width">470dp</dimen>
     <dimen name="text_micro">11sp</dimen>

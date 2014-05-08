@@ -1,4 +1,4 @@
-package com.theappbusiness.whoswho.provider;
+package com.theappbusiness.whoswho.helper;
 
 import java.util.ArrayList;
 
@@ -11,7 +11,7 @@ import android.content.ContentValues;
 
 import com.theappbusiness.whoswho.WhosWhoContract;
 
-public class AccessBioProvider {
+public class ParseWebsiteHelper {
 
 	private String html;
 
@@ -80,7 +80,7 @@ public class AccessBioProvider {
 		/*
 		 * Employee photo.
 		 */
-		Elements photo = employee.getElementsByClass("photo");
+		Elements photo = employee.getElementsByTag("img");
 		if (photo != null && photo.size() > 0) {
 			employeeValue.put(WhosWhoContract.Biographies.COLUMN_NAME_PHOTO, photo.first().attr("src"));
 		}
