@@ -13,6 +13,14 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        
+         <provider
+            android:name="com.theappbusiness.whoswho.WhosWhoProvider"
+            android:authorities="com.theappbusiness.provider.WhosWho"
+            android:exported="false" >
+            <grant-uri-permission android:pathPattern=".*" />
+        </provider>
+        
         <activity
             android:name="com.theappbusiness.whoswho.MainActivity"
             android:label="@string/app_name" >
