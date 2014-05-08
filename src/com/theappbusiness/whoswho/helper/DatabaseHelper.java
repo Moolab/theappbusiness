@@ -15,7 +15,7 @@ import com.theappbusiness.whoswho.WhosWhoContract;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
 	/**
-	 * Database creation sql statement
+	 * Database creation SQL statement
 	 */
 	private static final String DATABASE_CREATE = "create table " + WhosWhoContract.Biographies.TABLE_NAME + " (" 
 	 + WhosWhoContract.Biographies._ID + " integer primary key autoincrement, " 
@@ -23,7 +23,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 + WhosWhoContract.Biographies.COLUMN_NAME_NAME + " text not null, "
 	 + WhosWhoContract.Biographies.COLUMN_NAME_TITLE + " text not null, "
 	 + WhosWhoContract.Biographies.COLUMN_NAME_PHOTO + " text not null, "
-	 + WhosWhoContract.Biographies.COLUMN_NAME_ORDER + " integer not null, "
+	 + WhosWhoContract.Biographies.COLUMN_NAME_NUM + " integer not null "
 	 + ");";
 	
 	private static final String DATABASE_NAME = "theappbusiness";

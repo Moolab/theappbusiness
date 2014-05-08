@@ -110,14 +110,12 @@ public final class WhosWhoContract {
 		 */
 		public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.theappbusiness." + TABLE_NAME;
 
-
-		public static final String DEFAULT_SORT_ORDER = "order ASC";
-
-		public static final String COLUMN_NAME_ORDER = "order";
+		public static final String COLUMN_NAME_NUM = "num";
 		public static final String COLUMN_NAME_NAME = "name";
 		public static final String COLUMN_NAME_TITLE = "title";
 		public static final String COLUMN_NAME_BIO = "biography";
 		public static final String COLUMN_NAME_PHOTO = "photo";
 
+		public static final String DEFAULT_SORT_ORDER = COLUMN_NAME_NUM + " ASC";
 	}
 }

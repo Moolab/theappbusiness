@@ -2,5 +2,5 @@
 <resources>
 
     <string name="app_name">Who\'s Who</string>    
-
+	<string name="sync_finish">Data Synced</string>
 </resources>
