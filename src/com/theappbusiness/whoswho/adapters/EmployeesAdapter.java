@@ -17,21 +17,28 @@ import com.theappbusiness.whoswho.WhosWhoContract;
 import com.theappbusiness.whoswho.utils.Fonts;
 import com.theappbusiness.whoswho.utils.ImageFetcher;
 
-public class ImageAdapter extends CursorAdapter {
+public class EmployeesAdapter extends CursorAdapter {
 
+	/*
+	 * Context
+	 */
 	private final Context mContext;
+	
+	/*
+	 * Grid Item Height
+	 */
 	private int mItemHeight = 0;
 	private int mNumColumns = 0;
-	private GridView.LayoutParams mImageViewLayoutParams;
+	private GridView.LayoutParams mCardLayoutParams;
 
 	private LayoutInflater inflater;
 	private ImageFetcher mImageFetcher;
 
-	public ImageAdapter(Context context, ImageFetcher mImageFetcher) {
+	public EmployeesAdapter(Context context, ImageFetcher mImageFetcher) {
 		super(context, null, true);
 		mContext = context;
 		this.mImageFetcher = mImageFetcher;
-		mImageViewLayoutParams = new GridView.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+		mCardLayoutParams = new GridView.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 		inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 
@@ -71,7 +78,7 @@ public class ImageAdapter extends CursorAdapter {
 		ViewHolder viewHolder;
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.employee, container, false);
-			convertView.setLayoutParams(mImageViewLayoutParams);
+			convertView.setLayoutParams(mCardLayoutParams);
 
 			viewHolder = new ViewHolder();
 			viewHolder.photo = (ImageView) convertView.findViewById(R.id.photo);
@@ -92,7 +99,7 @@ public class ImageAdapter extends CursorAdapter {
 
 		// Check the height matches our calculated column width
 		if (convertView.getLayoutParams().height != mItemHeight) {
-			convertView.setLayoutParams(mImageViewLayoutParams);
+			convertView.setLayoutParams(mCardLayoutParams);
 		}
 
 		Cursor item = getItem(position);
@@ -101,7 +108,7 @@ public class ImageAdapter extends CursorAdapter {
 		if (photo != null) {
 			mImageFetcher.loadImage(photo, viewHolder.photo, true);
 		} else {
-			viewHolder.photo.setImageResource(R.drawable.empty_photo);
+			viewHolder.photo.setImageBitmap(null);
 		}
 
 		viewHolder.name.setText(item.getString(item.getColumnIndex(WhosWhoContract.Biographies.COLUMN_NAME_NAME)));
@@ -123,7 +130,7 @@ public class ImageAdapter extends CursorAdapter {
 			return;
 		}
 		mItemHeight = height;
-		mImageViewLayoutParams = new GridView.LayoutParams(LayoutParams.MATCH_PARENT, mItemHeight);
+		mCardLayoutParams = new GridView.LayoutParams(LayoutParams.MATCH_PARENT, mItemHeight);
 		notifyDataSetChanged();
 	}
 

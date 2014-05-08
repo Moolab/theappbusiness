@@ -21,6 +21,9 @@ import android.provider.BaseColumns;
 
 public final class WhosWhoContract {
 
+	/*
+	 * Authority Provider
+	 */
 	public static final String AUTHORITY = "com.theappbusiness.provider.WhosWho";
 
 	// This class cannot be instantiated
@@ -110,12 +113,34 @@ public final class WhosWhoContract {
 		 */
 		public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.theappbusiness." + TABLE_NAME;
 
+		/*
+		 * Order in list
+		 */
 		public static final String COLUMN_NAME_NUM = "num";
+		
+		/*
+		 * Name of Employee
+		 */
 		public static final String COLUMN_NAME_NAME = "name";
+		
+		/*
+		 * Title of Employee
+		 */
 		public static final String COLUMN_NAME_TITLE = "title";
+		
+		/*
+		 * Description of Employee
+		 */
 		public static final String COLUMN_NAME_BIO = "biography";
+		
+		/*
+		 * Profile Photo
+		 */
 		public static final String COLUMN_NAME_PHOTO = "photo";
 
+		/*
+		 * Order by num as default
+		 */
 		public static final String DEFAULT_SORT_ORDER = COLUMN_NAME_NUM + " ASC";
 	}
 }

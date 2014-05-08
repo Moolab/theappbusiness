@@ -34,6 +34,7 @@ import android.widget.ImageView;
 
 import com.theappbusiness.whoswho.BuildConfig;
 import com.theappbusiness.whoswho.asyncs.AsyncTask;
+import com.theappbusiness.whoswho.helper.ImageRounderHelper;
 
 /**
  * This class wraps up completing some arbitrary long running work when loading
@@ -322,6 +323,9 @@ public abstract class ImageWorker {
 			// add the processed
 			// bitmap to our cache as it might be used again in the future
 			if (bitmap != null) {
+				
+				bitmap = ImageRounderHelper.getRoundedCornerBitmap(bitmap, 300);
+				
 				if (Utils.hasHoneycomb()) {
 					// Running on Honeycomb or newer, so wrap in a standard
 					// BitmapDrawable

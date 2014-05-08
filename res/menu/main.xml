@@ -3,5 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.theappbusiness.whoswho.MainActivity" >
 
+    <item
+        android:id="@+id/action_reload"
+        android:icon="@drawable/ic_action_av_replay"
+        android:title="@string/action_reload"
+        app:showAsAction="always">
+    </item>
 
 </menu>

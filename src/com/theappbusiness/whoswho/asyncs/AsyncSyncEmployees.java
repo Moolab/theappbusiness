@@ -6,16 +6,16 @@ import android.os.AsyncTask;
 
 import com.theappbusiness.whoswho.WhosWhoContract;
 
-public class AsyncSyncEmplyees extends AsyncTask<ContentValues, Void, Boolean> {
+public class AsyncSyncEmployees extends AsyncTask<ContentValues, Void, Boolean> {
 
-	public interface Callback {
+	public interface CallbackEmployees {
 		public void onFinish(Boolean done);
 	}
 
 	private final Context mContext;
-	private final Callback mCallback;
+	private final CallbackEmployees mCallback;
 
-	public AsyncSyncEmplyees(final Context context, Callback callback) {
+	public AsyncSyncEmployees(final Context context, CallbackEmployees callback) {
 		super();
 		mContext = context;
 		mCallback = callback;
@@ -28,7 +28,7 @@ public class AsyncSyncEmplyees extends AsyncTask<ContentValues, Void, Boolean> {
 			return false;
 		}
 		
-		mContext.getContentResolver().delete(WhosWhoContract.Biographies.CONTENT_URI, null, null);
+//		mContext.getContentResolver().delete(WhosWhoContract.Biographies.CONTENT_URI, null, null);
 		for (ContentValues employee : employees) {
 			mContext.getContentResolver().insert(WhosWhoContract.Biographies.CONTENT_URI, employee);
 		}

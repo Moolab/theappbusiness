@@ -20,10 +20,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	private static final String DATABASE_CREATE = "create table " + WhosWhoContract.Biographies.TABLE_NAME + " (" 
 	 + WhosWhoContract.Biographies._ID + " integer primary key autoincrement, " 
 	 + WhosWhoContract.Biographies.COLUMN_NAME_BIO + " text, "
-	 + WhosWhoContract.Biographies.COLUMN_NAME_NAME + " text not null, "
-	 + WhosWhoContract.Biographies.COLUMN_NAME_TITLE + " text not null, "
-	 + WhosWhoContract.Biographies.COLUMN_NAME_PHOTO + " text not null, "
-	 + WhosWhoContract.Biographies.COLUMN_NAME_NUM + " integer not null "
+	 + WhosWhoContract.Biographies.COLUMN_NAME_NAME + " text, "
+	 + WhosWhoContract.Biographies.COLUMN_NAME_TITLE + " text, "
+	 + WhosWhoContract.Biographies.COLUMN_NAME_PHOTO + " text, "
+	 + WhosWhoContract.Biographies.COLUMN_NAME_NUM + " integer"
 	 + ");";
 	
 	private static final String DATABASE_NAME = "theappbusiness";

@@ -17,7 +17,7 @@ import android.widget.GridView;
 import com.theappbusiness.whoswho.BuildConfig;
 import com.theappbusiness.whoswho.R;
 import com.theappbusiness.whoswho.WhosWhoContract;
-import com.theappbusiness.whoswho.adapters.ImageAdapter;
+import com.theappbusiness.whoswho.adapters.EmployeesAdapter;
 import com.theappbusiness.whoswho.utils.ImageCache.ImageCacheParams;
 import com.theappbusiness.whoswho.utils.ImageFetcher;
 
@@ -26,13 +26,14 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
 	private static final String TAG = "ImageGridFragment";
 	private static final String IMAGE_CACHE_DIR = "thumbs";
 
-	private int mImageThumbSize;
+	private int mCardWidth;
 	private int mImageThumbSpacing;	
 	private ImageFetcher mImageFetcher;
 	private ImageCacheParams cacheParams;
 	
 	private GridView mEmployeesGrid;
-	private ImageAdapter mAdapter;
+	private EmployeesAdapter mAdapter;
+	private int mCardHeight;
 
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -59,12 +60,12 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
 			@Override
 			public void onGlobalLayout() {
 				if (mAdapter.getNumColumns() == 0) {
-					final int numColumns = (int) Math.floor(mEmployeesGrid.getWidth() / (mImageThumbSize + mImageThumbSpacing));
+					final int numColumns = (int) Math.floor(mEmployeesGrid.getWidth() / (mCardWidth + mImageThumbSpacing));
 					if (numColumns > 0) {
 						final int columnWidth = (mEmployeesGrid.getWidth() / numColumns) - mImageThumbSpacing;						
 						mImageFetcher.setImageSize(columnWidth);						
 						mAdapter.setNumColumns(numColumns);
-						mAdapter.setItemHeight(columnWidth);
+						mAdapter.setItemHeight(mCardHeight);
 						if (BuildConfig.DEBUG) {
 							Log.d(TAG, "onCreateView - numColumns set to " + numColumns);
 						}
@@ -81,17 +82,18 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
 		super.onActivityCreated(savedInstanceState);
 		setHasOptionsMenu(true);
 
-		mImageThumbSize = getResources().getDimensionPixelSize(R.dimen.employee_card_size);
+		mCardWidth = getResources().getDimensionPixelSize(R.dimen.employess_card_width);
+		mCardHeight = getResources().getDimensionPixelSize(R.dimen.employee_card_height);
 		mImageThumbSpacing = getResources().getDimensionPixelSize(R.dimen.employee_spacing);		
 
 		cacheParams = new ImageCacheParams(getActivity(), IMAGE_CACHE_DIR);
 		cacheParams.setMemCacheSizePercent(0.8f);
 
-		mImageFetcher = new ImageFetcher(getActivity(), mImageThumbSize);
-		mImageFetcher.setLoadingImage(R.drawable.empty_photo);
+		mImageFetcher = new ImageFetcher(getActivity(), mCardWidth);
+		mImageFetcher.setLoadingImage(null);
 		mImageFetcher.addImageCache(getActivity().getSupportFragmentManager(), cacheParams);
 
-		mAdapter = new ImageAdapter(getActivity(), mImageFetcher);
+		mAdapter = new EmployeesAdapter(getActivity(), mImageFetcher);
         mEmployeesGrid.setAdapter(mAdapter);
 		
 		getLoaderManager().initLoader(0, null, this);

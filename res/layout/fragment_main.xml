@@ -11,7 +11,8 @@
         android:layout_height="match_parent"
         android:clipToPadding="false"
         android:horizontalSpacing="@dimen/employee_spacing"
-        android:numColumns="1"
+        android:numColumns="auto_fit"
+        android:columnWidth="@dimen/employess_card_width"
         android:padding="@dimen/padding_intern"
         android:stretchMode="columnWidth"
         android:verticalSpacing="@dimen/employee_spacing" >

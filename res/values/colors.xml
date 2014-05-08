@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="text_name">#212121</color>
+    <color name="text_name">#A0212121</color>
     <color name="text_bio">#9C9C9C</color>
     <color name="text_title">#80212121</color>
     <color name="bg_card">#FFFFFF</color>

@@ -36,12 +36,24 @@ import com.theappbusiness.whoswho.helper.DatabaseHelper;
  */
 public class WhosWhoProvider extends ContentProvider {
 
+	/*
+	 * TAG using in log.
+	 */
 	public static final String TAG = "WhosWhoProvider";
 
+	/*
+	 * In case of pagination
+	 */
 	public static final String QUERY_PARAMETER_LIMIT = "limit";
 
+	/*
+	 * Projections map
+	 */
 	private static HashMap<String, String> sProjectionMapBiographies;
 
+	/*
+	 * Match the uri parameter
+	 */
 	private static final int URI_MATCHES_BIOGRAPHIES = 1;
 	private static final int URI_MATCHES_ID_BIOGRAPHIES = 2;	
 
@@ -88,7 +100,6 @@ public class WhosWhoProvider extends ContentProvider {
 	 */
 	@Override
 	public boolean onCreate() {
-
 		mOpenHelper = new DatabaseHelper(getContext());
 		return true;
 	}
@@ -228,7 +239,6 @@ public class WhosWhoProvider extends ContentProvider {
 		// If the pattern is for notes or live folders, returns the general
 		// content type.
 		case URI_MATCHES_BIOGRAPHIES:
-			// case URI_MATCHES_LIVE_FOLDER_INGREDIENTS:
 			return WhosWhoContract.Biographies.CONTENT_TYPE;
 
 			// If the pattern is for note IDs, returns the note ID content type.
