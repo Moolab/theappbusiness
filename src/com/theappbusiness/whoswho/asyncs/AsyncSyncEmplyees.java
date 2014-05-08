@@ -28,6 +28,7 @@ public class AsyncSyncEmplyees extends AsyncTask<ContentValues, Void, Boolean> {
 			return false;
 		}
 		
+		mContext.getContentResolver().delete(WhosWhoContract.Biographies.CONTENT_URI, null, null);
 		for (ContentValues employee : employees) {
 			mContext.getContentResolver().insert(WhosWhoContract.Biographies.CONTENT_URI, employee);
 		}

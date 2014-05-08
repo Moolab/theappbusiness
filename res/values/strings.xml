@@ -3,4 +3,5 @@
 
     <string name="app_name">Who\'s Who</string>    
 	<string name="sync_finish">Data Synced</string>
+	<string name="photo">Employee Photo</string>
 </resources>

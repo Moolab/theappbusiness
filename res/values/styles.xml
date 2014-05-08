@@ -17,4 +17,8 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
+    <style name="EmployeesGridLayout">
+        <item name="android:drawSelectorOnTop">true</item>
+    </style>
+
 </resources>
