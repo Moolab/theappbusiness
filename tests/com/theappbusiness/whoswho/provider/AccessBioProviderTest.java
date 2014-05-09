@@ -44,8 +44,6 @@ public class AccessBioProviderTest extends TestCase {
 		 * Quantity of biographies
 		 */
 		assertEquals(1, bios.size());
-		
-		bios.get(0);
 	}
 	
 	/*

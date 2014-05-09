@@ -15,6 +15,11 @@ import com.theappbusiness.whoswho.WhosWhoContract;
 import com.theappbusiness.whoswho.utils.Fonts;
 import com.theappbusiness.whoswho.utils.ImageFetcher;
 
+/**
+ * 
+ * @author lucas
+ *
+ */
 public class EmployeesAdapter extends CursorAdapter {
 
 	/*
@@ -23,6 +28,10 @@ public class EmployeesAdapter extends CursorAdapter {
 	private final Context mContext;
 
 	private LayoutInflater inflater;
+	
+	/*
+	 * Image fetcher.
+	 */
 	private ImageFetcher mImageFetcher;
 
 	public EmployeesAdapter(Context context, ImageFetcher mImageFetcher) {
@@ -88,6 +97,10 @@ public class EmployeesAdapter extends CursorAdapter {
 
 		Cursor item = getItem(position);
 
+		/*
+		 * Check if photo is not null and make the decode.
+		 * Otherwise the photo will be blank.
+		 */
 		String photo = item.getString(item.getColumnIndex(WhosWhoContract.Biographies.COLUMN_NAME_PHOTO));
 		if (photo != null) {
 			mImageFetcher.loadImage(photo, viewHolder.photo, true);
@@ -127,6 +140,9 @@ public class EmployeesAdapter extends CursorAdapter {
 		return null;
 	}
 
+	/*
+	 * Viewholder to improve the performance and avoid ANR
+	 */
 	public static class ViewHolder {
 		public ImageView photo;
 		public TextView title;

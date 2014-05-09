@@ -18,15 +18,31 @@ import com.theappbusiness.whoswho.adapters.EmployeesAdapter;
 import com.theappbusiness.whoswho.utils.ImageCache.ImageCacheParams;
 import com.theappbusiness.whoswho.utils.ImageFetcher;
 
+/**
+ * 
+ * @author lucas
+ *
+ */
 public class MainFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 	
 	private static final String IMAGE_CACHE_DIR = "thumbs";
 	
+	/**
+	 * Image Fetcher
+	 */
 	private ImageFetcher mImageFetcher;
+	
+	/**
+	 * Cache image for use in offline mode
+	 */
 	private ImageCacheParams cacheParams;
 	
 	private GridView mEmployeesGrid;
-	private EmployeesAdapter mAdapter;
+	
+	/**
+	 * Grid Adapter for employees
+	 */
+	private EmployeesAdapter mAdapter;	
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -34,9 +50,14 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
 		View inflate = inflater.inflate(R.layout.fragment_main, container, false);
         
         mEmployeesGrid = (GridView) inflate.findViewById(R.id.employees_grid);
+        
+        /*
+         * On scrolling pause the image fetcher, to improve the performance.
+         */
         mEmployeesGrid.setOnScrollListener(new AbsListView.OnScrollListener() {
 			@Override
 			public void onScrollStateChanged(AbsListView absListView, int scrollState) {
+				
 				// Pause fetcher to ensure smoother scrolling when flinging
 				if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_FLING) {
 					mImageFetcher.setPauseWork(true);
@@ -54,12 +75,11 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
-		setHasOptionsMenu(true);
+		super.onActivityCreated(savedInstanceState);		
 
 		cacheParams = new ImageCacheParams(getActivity(), IMAGE_CACHE_DIR);
 		cacheParams.setMemCacheSizePercent(0.8f);
-
+		
 		mImageFetcher = new ImageFetcher(getActivity(), getResources().getDimensionPixelSize(R.dimen.photo_size));
 		mImageFetcher.setLoadingImage(null);
 		mImageFetcher.addImageCache(getActivity().getSupportFragmentManager(), cacheParams);
@@ -67,6 +87,9 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
 		mAdapter = new EmployeesAdapter(getActivity(), mImageFetcher);
         mEmployeesGrid.setAdapter(mAdapter);
 		
+        /*
+         * Starting the cursor loader
+         */
 		getLoaderManager().initLoader(0, null, this);
 	}
 	
@@ -91,7 +114,7 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
 	}
 	
 	@Override
-	public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
+	public Loader<Cursor> onCreateLoader(int id, Bundle bundle) {
 		String[] projection = { 
 				WhosWhoContract.Biographies._ID,
 				WhosWhoContract.Biographies.COLUMN_NAME_BIO,
@@ -103,12 +126,12 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
 	}
 
 	@Override
-	public void onLoadFinished(Loader<Cursor> arg0, Cursor data) {
+	public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
 		mAdapter.swapCursor(data);
 	}
 
 	@Override
-	public void onLoaderReset(Loader<Cursor> arg0) {
+	public void onLoaderReset(Loader<Cursor> loader) {
 		mAdapter.swapCursor(null);
 	}
 }

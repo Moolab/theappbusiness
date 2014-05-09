@@ -8,6 +8,7 @@ import android.util.Log;
 import com.theappbusiness.whoswho.WhosWhoContract;
 
 /**
+ * @author lucas
  * 
  * This class helps open, create, and upgrade the database file. Set to package
  * visibility for testing purposes.

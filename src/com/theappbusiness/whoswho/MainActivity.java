@@ -11,10 +11,15 @@ import android.view.Window;
 
 import com.theappbusiness.whoswho.asyncs.AsyncParseWebsite;
 import com.theappbusiness.whoswho.asyncs.AsyncParseWebsite.CallbackParse;
-import com.theappbusiness.whoswho.asyncs.AsyncSyncEmployees;
-import com.theappbusiness.whoswho.asyncs.AsyncSyncEmployees.CallbackEmployees;
+import com.theappbusiness.whoswho.asyncs.AsyncImportEmployees;
+import com.theappbusiness.whoswho.asyncs.AsyncImportEmployees.CallbackEmployees;
 import com.theappbusiness.whoswho.fragments.MainFragment;
 
+/**
+ * 
+ * @author lucas
+ *
+ */
 public class MainActivity extends ActionBarActivity {
 
 	@Override
@@ -27,6 +32,9 @@ public class MainActivity extends ActionBarActivity {
 		
 		setSupportProgressBarIndeterminateVisibility(false);
 		
+		/*
+		 * Prevent duplicate calls on rotation
+		 */
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction().add(R.id.container, new MainFragment()).commit();
 			syncEmployees();
@@ -43,6 +51,9 @@ public class MainActivity extends ActionBarActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		
 		switch (item.getItemId()) {
+		/*
+		 * Sync employees on reload
+		 */
 		case R.id.action_reload:		
 			syncEmployees();
 			break;
@@ -51,6 +62,9 @@ public class MainActivity extends ActionBarActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
+	/**
+	 * This method make the Async Call for parsing website and insert employees on data base.
+	 */
 	protected void syncEmployees() {
 		setSupportProgressBarIndeterminateVisibility(true);
 		
@@ -71,7 +85,7 @@ public class MainActivity extends ActionBarActivity {
 						}
 					}
 				};
-				AsyncSyncEmployees sync = new AsyncSyncEmployees(MainActivity.this, callback);
+				AsyncImportEmployees sync = new AsyncImportEmployees(MainActivity.this, callback);
 				sync.execute(values.toArray(new ContentValues[values.size()]));			
 			}
 		};

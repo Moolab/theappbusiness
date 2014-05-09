@@ -1,0 +1,4 @@
+<resources>    
+    <dimen name="photo_size">140dp</dimen>
+    <dimen name="employee_card_height">250dp</dimen>    
+</resources>

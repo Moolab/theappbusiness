@@ -11,6 +11,11 @@ import android.content.ContentValues;
 
 import com.theappbusiness.whoswho.WhosWhoContract;
 
+/**
+ * 
+ * @author lucas
+ *
+ */
 public class ParseWebsiteHelper {
 
 	private String html;

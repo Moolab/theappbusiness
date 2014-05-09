@@ -32,6 +32,7 @@ import android.text.TextUtils;
 import com.theappbusiness.whoswho.helper.DatabaseHelper;
 
 /**
+ * @author lucas
  * Provides access to a database of WhosWho.
  */
 public class WhosWhoProvider extends ContentProvider {

@@ -19,6 +19,11 @@ package com.theappbusiness.whoswho;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
+/**
+ * 
+ * @author lucas
+ *
+ */
 public final class WhosWhoContract {
 
 	/*

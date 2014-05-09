@@ -3,6 +3,11 @@ package com.theappbusiness.whoswho.utils;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 
+/**
+ * 
+ * @author lucas
+ *
+ */
 public class Fonts {
 
 	private static Fonts fonts = new Fonts();

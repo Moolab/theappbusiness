@@ -14,6 +14,11 @@ import android.os.AsyncTask;
 
 import com.theappbusiness.whoswho.helper.ParseWebsiteHelper;
 
+/**
+ * 
+ * @author lucas
+ *
+ */
 public class AsyncParseWebsite extends AsyncTask<String, Void, ArrayList<ContentValues>> {
 
 	public interface CallbackParse {
