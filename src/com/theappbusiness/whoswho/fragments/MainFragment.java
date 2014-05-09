@@ -42,7 +42,9 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
 	/**
 	 * Grid Adapter for employees
 	 */
-	private EmployeesAdapter mAdapter;	
+	private EmployeesAdapter mAdapter;
+
+	private View mEmpty;	
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -50,6 +52,8 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
 		View inflate = inflater.inflate(R.layout.fragment_main, container, false);
         
         mEmployeesGrid = (GridView) inflate.findViewById(R.id.employees_grid);
+        mEmpty = (View) inflate.findViewById(android.R.id.empty);
+        mEmployeesGrid.setEmptyView(mEmpty);
         
         /*
          * On scrolling pause the image fetcher, to improve the performance.

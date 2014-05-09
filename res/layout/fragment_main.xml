@@ -10,12 +10,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
+        android:columnWidth="@dimen/employess_card_width"
         android:horizontalSpacing="@dimen/employee_spacing"
         android:numColumns="auto_fit"
-        android:columnWidth="@dimen/employess_card_width"
         android:padding="@dimen/padding_intern"
         android:stretchMode="columnWidth"
         android:verticalSpacing="@dimen/employee_spacing" >
     </GridView>
+
+    <ImageView
+        android:id="@android:id/empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_launcher" />
 
 </RelativeLayout>
