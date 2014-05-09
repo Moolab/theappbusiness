@@ -11,11 +11,21 @@ import android.graphics.RectF;
 
 public class ImageRounderHelper {
 	
+	/**
+	 * Round Photo
+	 * 
+	 * @param bitmap
+	 * @param pixels
+	 * @return
+	 */
     public static Bitmap getRoundedCornerBitmap(Bitmap bitmap, int pixels) {
         
+    	/*
+    	 * Create a bitmap with 8888 ARGB. And init the canvas.
+    	 */
     	Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Config.ARGB_8888);
         Canvas canvas = new Canvas(output);
-
+        
         final int color = 0xff424242;
         final Paint paint = new Paint();
         final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
@@ -27,9 +37,16 @@ public class ImageRounderHelper {
         paint.setColor(color);
         canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
 
+        /*
+         * Making the circle transparent
+         */
         paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
         canvas.drawBitmap(bitmap, rect, rect, paint);
 
+        /*
+         * Return the original bitmap with overlay of circle.
+         */
+        
         return output;
     }
 }
